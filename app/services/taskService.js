@@ -21,6 +21,15 @@ const editTask = async (task_id, taskData) => {
   }
 };
 
+// get single task data
+const getSingleTask = async (task_id) => {
+  try {
+    return await Task.findById(task_id);
+  } catch (error) {
+    throw new Error(`Error fetching task with this id: ${task_id}`);
+  }
+};
+
 //  fetch users task
 const fetchUsersTask = async (user_id) => {
   try {
@@ -39,4 +48,20 @@ const deleteTask = async (task_id) => {
   }
 };
 
-module.exports = { addTask, editTask, fetchUsersTask, deleteTask };
+//  fetch all task
+const fetchAllTask = async () => {
+  try {
+    return await Task.find({ status: "pending" });
+  } catch (error) {
+    throw new Error(`Error fetching all task`);
+  }
+};
+
+module.exports = {
+  addTask,
+  editTask,
+  fetchUsersTask,
+  deleteTask,
+  fetchAllTask,
+  getSingleTask,
+};

@@ -9,6 +9,7 @@ const taskSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  price: { type: Number, required: true },
 });
 
 module.exports = mongoose.model("Task", taskSchema);

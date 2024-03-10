@@ -18,6 +18,19 @@ const addNewTask = async (req, res) => {
   }
 };
 
+// Fetch all the tasks
+const fetchAllTasks = async (req, res) => {
+  try {
+    const allTasks = await taskService.fetchAllTask();
+    res.status(200).json({
+      message: "Fetched All Tasks Successfully",
+      tasks: allTasks,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 //// Edit a task
 const editTask = async (req, res) => {
   const { taskId } = req.params;
@@ -25,6 +38,17 @@ const editTask = async (req, res) => {
   try {
     const editedTask = await taskService.editTask(taskId, body);
     res.status(200).json(editedTask);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//  fetch single task
+const getSingleTask = async (req, res) => {
+  const { taskId } = req.params;
+  try {
+    const singleTask = await taskService.getSingleTask(taskId);
+    res.status(200).json(singleTask);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -57,4 +81,11 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { addNewTask, deleteTask, fetchUserTasks, editTask };
+module.exports = {
+  addNewTask,
+  deleteTask,
+  fetchUserTasks,
+  editTask,
+  fetchAllTasks,
+  getSingleTask,
+};

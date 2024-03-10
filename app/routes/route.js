@@ -15,6 +15,8 @@ const taskController = require("../contollers/taskController");
 
 router.post("/auth/login", authController.login);
 router.post("/auth/register", authController.register);
+router.get("/tasks/all", taskController.fetchAllTasks);
+router.get("/tasks/get/:taskId", taskController.getSingleTask);
 
 /**
  *
