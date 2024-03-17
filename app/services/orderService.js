@@ -9,7 +9,7 @@ const addOrder = async (orderData, transaction) => {
     orderData.transaction_id = newTrans._id;
     const newOrder = new Order(orderData);
     await newOrder.save();
-    console.log(orderData);
+    console.log(orderData, newOrder);
 
     return newOrder;
   } catch (error) {

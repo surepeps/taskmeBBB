@@ -3,7 +3,7 @@ const router = express.Router();
 
 // importing of controllers
 const authController = require("../contollers/authController");
-const { authChecker } = require("../middlewares/authMiddleware");
+const { authChecker, upload } = require("../middlewares/authMiddleware");
 const userController = require("../contollers/userController");
 const taskController = require("../contollers/taskController");
 const orderController = require("../contollers/orderController");
@@ -37,7 +37,7 @@ router.put("/updateProfile", userController.updateUserProfile);
  * TASK ROUTES
  */
 router.get("/tasks", taskController.fetchUserTasks);
-router.post("/tasks/add", taskController.addNewTask);
+router.post("/tasks/add", upload.single("image"), taskController.addNewTask);
 router.put("/tasks/edit/:taskId", taskController.editTask);
 router.delete("/tasks/delete/:taskId", taskController.deleteTask);
 
