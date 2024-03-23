@@ -7,6 +7,10 @@ const { authChecker, upload } = require("../middlewares/authMiddleware");
 const userController = require("../contollers/userController");
 const taskController = require("../contollers/taskController");
 const orderController = require("../contollers/orderController");
+const homeController = require("../contollers/homeController");
+
+
+router.get("/", homeController.home);
 
 /**
  *
